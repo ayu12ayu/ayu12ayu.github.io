@@ -1,33 +1,106 @@
+
 /* --------------------
         全体
 -------------------- */
 
 :root {
-  --theme-color: #00a0a0;
+  --theme-color: #168b85;
+  --theme-dark: #174e4a;
+  --theme-light: #e8f4f2;
+  --background-color: #f5f8f8;
+  --text-color: #354341;
+  --border-color: #e5ecea;
 }
 
 * {
   box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  padding: 30px;
-  color: #333;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 40px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-family:
+    "Noto Sans JP",
+    "Yu Gothic",
+    "Meiryo",
+    sans-serif;
+  line-height: 1.8;
+}
+
+/* --------------------
+        メインタイトル
+-------------------- */
+
+h1 {
+  color: var(--theme-dark);
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--theme-color);
+}
+
+/* --------------------
+        プロフィール画像
+-------------------- */
+
+body > img {
+  display: block;
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 25px auto 55px;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 25px rgba(23, 78, 74, 0.12);
 }
 
 /* --------------------
         見出し
 -------------------- */
 
-h1, h2, h3 {
-  color: var(--theme-color);
-  border-bottom: dashed 0.1em var(--theme-color);
+h2, h3 {
+  color: var(--theme-dark);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-top: 55px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--theme-color);
+}
+
+h3 {
+  font-size: 1.35rem;
+  margin-top: 40px;
+  margin-bottom: 18px;
+  padding: 10px 15px;
+  border-left: 5px solid var(--theme-color);
+  border-bottom: 1px solid var(--border-color);
+  background: linear-gradient(
+    to right,
+    var(--theme-light),
+    transparent
+  );
+}
+
+/* --------------------
+        本文
+-------------------- */
+
+p {
+  margin: 15px 0 25px;
+  line-height: 2;
 }
 
 /* --------------------
@@ -37,6 +110,12 @@ h1, h2, h3 {
 a {
   color: var(--theme-color);
   text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--theme-dark);
+  text-decoration: underline;
 }
 
 /* --------------------
@@ -45,10 +124,20 @@ a {
 
 ul {
   list-style: none;
+  padding-left: 10px;
+  margin: 15px 0 30px;
 }
-li:before {
-  content: "★";
+
+li {
+  margin: 10px 0;
+}
+
+li::before {
+  content: "◆";
   color: var(--theme-color);
+  font-size: 0.65em;
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
 /* --------------------
@@ -56,22 +145,115 @@ li:before {
 -------------------- */
 
 table {
+  width: 100%;
   border-spacing: 0;
-  border-collapse: collapse;
-  border: solid 1px #f0f0f0;
-  min-width: 70%;
+  border-collapse: separate;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 20px 0 35px;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(23, 78, 74, 0.04);
 }
+
 tr {
   background-color: #fff;
 }
-tr:nth-child(2n) {
-  background-color: #f9f9f9;
+
+tr:nth-child(even) {
+  background-color: #f5f9f8;
 }
+
 th {
-  background: var(--theme-color);
+  width: 25%;
+  background: var(--theme-dark);
   color: #fff;
+  font-weight: 600;
 }
+
 th, td {
-  border: solid 1px #f0f0f0;
-  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding: 15px 18px;
+  text-align: left;
+}
+
+tr:last-child th,
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* --------------------
+        動画・埋め込み
+-------------------- */
+
+iframe {
+  max-width: 100%;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(23, 78, 74, 0.10);
+  margin: 10px 0 30px;
+}
+
+iframe[src*="youtube"] {
+  width: 100%;
+  max-width: 650px;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+iframe[src*="openprocessing"] {
+  width: 400px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+}
+
+/* --------------------
+        アニメーション
+-------------------- */
+
+table, iframe, body > img {
+  transition: box-shadow 0.25s ease,
+              transform 0.25s ease;
+}
+
+table:hover,
+iframe:hover {
+  box-shadow: 0 8px 25px rgba(23, 78, 74, 0.12);
+}
+
+/* --------------------
+        スマートフォン対応
+-------------------- */
+
+@media (max-width: 600px) {
+  body {
+    padding: 25px 18px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+  }
+
+  th {
+    width: 32%;
+  }
+
+  th, td {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+
+  body > img {
+    width: 155px;
+    height: 155px;
+  }
 }
