@@ -19,3 +19,4 @@ backToTopButton.addEventListener('click', () => {
     behavior: 'smooth'
   });
 });
+console.log('JavaScript読み込み成功！');
