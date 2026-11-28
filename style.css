@@ -282,8 +282,13 @@ body > img {
 }
 
 #back-to-top .top-arrow {
-  font-size: 25px;
-  line-height: 1;
+  display: block;
+  color: var(--theme-light);
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: bold;
+  visibility: visible;
+  opacity: 1;
   transition: transform 0.3s ease;
 }
 
